@@ -1,0 +1,37 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "First Node Project EV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "start:debug": "node --inspect-brk src/index.js",
+    "lint": "eslint src/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmeV/starter.git"
+  },
+  "keywords": [
+    "Node"
+  ],
+  "author": "Eme Varady",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmeV/starter/issues"
+  },
+  "homepage": "https://github.com/EmeV/starter#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "eslint-plugin-react": "^7.27.0"
+  }
+}
