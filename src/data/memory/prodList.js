@@ -36,13 +36,69 @@ const prodList = [
     },
   ];
 
-  const p = new Promise( (resolve, reject) => { resolve( prodList ) });
+  
 
-  async function getProducts() {
-    return p; //.then( () => productCategoryList).catch( () => console.log("error in promise categories"));
+  async function getProductsById( id ) {  
+    
+    const p = new Promise(  (resolve, reject) => { 
+      let product = prodList.find((el) => el.id == id)   
+        if ( product) {
+          resolve(product);
+        } else{
+          reject("Product with id " + id + " not found");
+        }  });
+    return p; 
   };
 
+  async function getProductsByCatId( id ) {  
+    
+    const p = new Promise(  (resolve, reject) => { 
+    let result = [];
+  
+    for (var i = 0; i < prodList.length; i++) {
+     console.log("cat Id of prod: "+ prodList[i].category.id );
+      if (prodList[i].category.id == req.params.catId) {
+        result.push(prodList[i])
+      } 
+      if ( result.length > 0) {
+        resolve(result);
+      }else{
+          reject("Product with id " + id + " not found");
+        } 
+    } });
+    return p; 
+  };
 
-//module.exports = getProducts;
+  
+  async function getProductPosById(id) {  
+    const p = new Promise(  (resolve, reject) => { 
+      let pos = prodList.indexOf(prodList.find((el) => el.id == id))    
+        if ( pos) {
+          resolve(pos);
+        } else{
+          reject("Product with id " + id + " not found");
+        }  });
+    return p; 
+  };
 
-module.exports = prodList;
+  async function deleteProductById(id) {  
+    const p = new Promise(  (resolve, reject) => { 
+      let pos = prodList.indexOf(prodList.find((el) => el.id == id))    
+        if ( pos) {
+          let removedItem = prodList.splice(pos, 1);
+          if (removedItem){
+         // resolve(removedItem);
+          resolve(prodList);
+          }
+          else{
+            reject("Product with id " + id + " not found");
+          } 
+        } else{
+          reject("Product with id " + id + " not found");
+        }  });
+    return p; 
+  };
+
+module.exports = { getProductPosById, getProductsById, deleteProductById, getProductsByCatId };
+
+//module.exports = prodList;

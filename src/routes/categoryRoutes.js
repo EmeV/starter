@@ -9,25 +9,27 @@ const data = require("../data/memory");
 const prodList = data.prodList; //this is a constant
 const productCategoryList = data.productCategoryList; //this is a fucntion
 
-const getAllCategories = (request, res, next) => {
-  console.log("in func");
-  productCategoryList().then( (catList) => res.status(200).json(catList));
-  next();
-};
+const categoryController = require("../controllers/categoryController");
 
-//Reading all products in a given category (by id),
-const getProductsByCatId = (req, res, next) => {
-  let result = [];
+// const getAllCategories = (request, res, next) => {
+//   console.log("in func");
+//   productCategoryList().then( (catList) => res.status(200).json(catList));
+//   next();
+// };
 
-  for (var i = 0; i < prodList.length; i++) {
-   console.log("cat Id of prod: "+ prodList[i].category.id );
-    if (prodList[i].category.id == req.params.catId) {
-      result.push(prodList[i]);
-    }
-  }
-  res.status(200).json(result);
-  next();
-};
+// //Reading all products in a given category (by id),
+// const getProductsByCatId = (req, res, next) => {
+//   let result = [];
+
+//   for (var i = 0; i < prodList.length; i++) {
+//    console.log("cat Id of prod: "+ prodList[i].category.id );
+//     if (prodList[i].category.id == req.params.catId) {
+//       result.push(prodList[i]);
+//     }
+//   }
+//   res.status(200).json(result);
+//   next();
+// };
 
 function createNewProdId() {
   let newId = 0;
@@ -64,21 +66,26 @@ const createProductById = (req, res, next) => {
 };
 
 // respond with results calling getAllCategories
-router.get("/", getAllCategories, (req, res) => {
+router.get("/", categoryController.getAllCategories, async (req, res) => {
   //do nothing, let the function handle it
   //console.log( "get all categories");
 });
 
 // respond with results calling getProductsByCatId
-router.get("/:catId/products/", getProductsByCatId, (req, res) => {
+router.get("/:catId/products/", categoryController.getProductsByCatId, (req, res) => {
   //do nothing, let the function handle it
-  //console.log("req.params.catId: ", req.params.catId);
+  console.log("req.params.catId: ", req.params.catId);
 });
 
 // respond with results calling createProductById
-router.post("/:catId/products/", jsonParser, createProductById, (req, res) => {
+router.post("/:catId/products/", jsonParser, categoryController.createProductById, (req, res) => {
   //do nothing, let the function handle it
   //console.log("req.params.catId: ", req.params.catId);
+  //console.log("req.body: ", req.body);
+});
+
+router.post("/", jsonParser, categoryController.createNewCategory, async (req, res) => {
+  //do nothing, let the function handle it
   //console.log("req.body: ", req.body);
 });
 

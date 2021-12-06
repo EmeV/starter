@@ -11,5 +11,7 @@ const productCategoryList = [
     return p.then( () => productCategoryList).catch( () => console.log("error in promise categories"));
   };
 
+  
+
 //module.exports =  productCategoryList;
 module.exports = getCategories;
