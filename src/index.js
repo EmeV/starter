@@ -6,6 +6,7 @@ var models = require('./data/models');
 
 app.use('/products', myroutes.productRoutes);
 app.use('/categories', myroutes.categoryRoutes);
+app.use('/orders', myroutes.orderRoutes);
 
 //app.use( models);
 
