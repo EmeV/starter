@@ -21,7 +21,9 @@ let productSchema = new mongoose.Schema({
           required: true,
         },
         description: String,
-      }
+      },
+      imageUrl: String,
+
 })
 
 module.exports = { model: mongoose.model("Product", productSchema)};

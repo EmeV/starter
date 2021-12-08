@@ -7,7 +7,7 @@ var models = require('./data/models');
 app.use('/products', myroutes.productRoutes);
 app.use('/categories', myroutes.categoryRoutes);
 
-//app.use( models);
+app.use( models);
 
 // app.use(async(req, res, next) => {
 //   const categories = await 

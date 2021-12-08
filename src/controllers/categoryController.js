@@ -1,10 +1,9 @@
-const categoryData = require("../data/memory/productCategoryList");
-const productData = require("../data/memory/prodList");
 const CategoryModel = require("../data/models/category").model;
 const ProductModel = require("../data/models/product").model;
 
 const getAllCategories = async (req, res, next) => {
   //categoryData.productCategoryList().then( (catList) => res.status(200).json(catList)); //constants
+  console.log("get allCat");
   try {
     const allCat = await CategoryModel.find();
     //console.log(allCat);

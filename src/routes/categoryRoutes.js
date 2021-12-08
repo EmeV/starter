@@ -1,13 +1,7 @@
-//import productCategoryList  from "./data/memory/objects";
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
 const jsonParser = bodyParser.json();
-
-const data = require("../data/memory");
-const prodList = data.prodList; //this is a constant
-const productCategoryList = data.productCategoryList; //this is a fucntion
 
 const categoryController = require("../controllers/categoryController");
 
